@@ -1,0 +1,539 @@
+const sampleProducts = [
+  // --- SMARTPHONES ---
+  {
+    name: "Apple iPhone 16 Pro Max",
+    brand: "Apple",
+    category: "Smartphones",
+    price: 144900,
+    originalPrice: 154900,
+    quantity: 18,
+    rating: 4.9,
+    reviewsCount: 342,
+    featured: true,
+    badge: "Flagship",
+    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80",
+    description: "Titanium design with A18 Pro chip, 48MP Fusion camera system, Camera Control, and industry-leading battery life.",
+    specs: {
+      "Display": "6.9-inch Super Retina XDR OLED 120Hz",
+      "Processor": "Apple A18 Pro (3nm)",
+      "RAM & Storage": "8GB RAM | 256GB NVMe",
+      "Camera": "48MP Main + 48MP Ultra-Wide + 12MP 5x Telephoto",
+      "Battery": "4685 mAh with 25W MagSafe",
+      "Warranty": "1 Year Apple Manufacturer Warranty"
+    }
+  },
+  {
+    name: "Samsung Galaxy S24 Ultra 5G",
+    brand: "Samsung",
+    category: "Smartphones",
+    price: 129999,
+    originalPrice: 139999,
+    quantity: 24,
+    rating: 4.8,
+    reviewsCount: 289,
+    featured: true,
+    badge: "AI Powered",
+    image: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=80",
+    description: "Galaxy AI powerhouse with built-in S-Pen, Titanium armor frame, 200MP quad-tele camera, and Snapdragon 8 Gen 3 for Galaxy.",
+    specs: {
+      "Display": "6.8-inch Dynamic AMOLED 2X, QHD+ 120Hz 2600 nits",
+      "Processor": "Snapdragon 8 Gen 3 for Galaxy",
+      "RAM & Storage": "12GB RAM | 512GB UFS 4.0",
+      "Camera": "200MP + 50MP (5x) + 10MP (3x) + 12MP Ultra-Wide",
+      "Battery": "5000 mAh with 45W Fast Charging",
+      "Warranty": "1 Year Comprehensive Samsung Warranty"
+    }
+  },
+  {
+    name: "OnePlus 12 5G",
+    brand: "OnePlus",
+    category: "Smartphones",
+    price: 64999,
+    originalPrice: 69999,
+    quantity: 30,
+    rating: 4.7,
+    reviewsCount: 198,
+    featured: false,
+    badge: "Super Fast",
+    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+    description: "4th Gen Hasselblad Camera system, 2K ProXDR 120Hz display, and 100W SUPERVOOC hyper charging.",
+    specs: {
+      "Display": "6.82-inch QHD+ 120Hz ProXDR AMOLED",
+      "Processor": "Snapdragon 8 Gen 3",
+      "RAM & Storage": "16GB LPDDR5X | 512GB UFS 4.0",
+      "Camera": "50MP Sony LYT-808 + 64MP 3x Periscope + 48MP UW",
+      "Battery": "5400 mAh with 100W Charger in Box",
+      "Warranty": "1 Year Brand Warranty"
+    }
+  },
+  {
+    name: "Google Pixel 9 Pro",
+    brand: "Google",
+    category: "Smartphones",
+    price: 109999,
+    originalPrice: 119999,
+    quantity: 12,
+    rating: 4.8,
+    reviewsCount: 154,
+    featured: false,
+    badge: "Gemini AI",
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02560?auto=format&fit=crop&w=800&q=80",
+    description: "Next-gen Google Tensor G4 processor with full multimodal Gemini Live, Super Res Zoom up to 30x, and 7 years of OS updates.",
+    specs: {
+      "Display": "6.3-inch Super Actua LTPO OLED 120Hz",
+      "Processor": "Google Tensor G4 with Titan M2",
+      "RAM & Storage": "16GB RAM | 256GB Storage",
+      "Camera": "50MP Main + 48MP Ultra-Wide + 48MP 5x Telephoto",
+      "Battery": "4700 mAh with 30W Fast Charging",
+      "Warranty": "1 Year Google Hardware Warranty"
+    }
+  },
+
+  // --- TELEVISIONS ---
+  {
+    name: "Sony BRAVIA 65-inch XR 4K OLED TV (A80L)",
+    brand: "Sony",
+    category: "Televisions",
+    price: 219900,
+    originalPrice: 249900,
+    quantity: 9,
+    rating: 4.9,
+    reviewsCount: 112,
+    featured: true,
+    badge: "OLED Master",
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80",
+    description: "Pure OLED blacks and vibrant brightness powered by Cognitive Processor XR with Acoustic Surface Audio+ that turns screen into speaker.",
+    specs: {
+      "Screen Size": "65 Inches (164 cm)",
+      "Resolution": "4K Ultra HD (3840 x 2160), 120Hz Refresh Rate",
+      "Sound": "Acoustic Surface Audio+, Dolby Atmos (50W)",
+      "Smart TV OS": "Google TV with Hands-free Voice Search",
+      "Connectivity": "4 HDMI (2x HDMI 2.1 4K@120Hz), 2 USB, eARC",
+      "Warranty": "2 Years Comprehensive Brand Warranty"
+    }
+  },
+  {
+    name: "Samsung 55-inch Neo QLED 4K Smart TV (QN90D)",
+    brand: "Samsung",
+    category: "Televisions",
+    price: 124990,
+    originalPrice: 149990,
+    quantity: 15,
+    rating: 4.8,
+    reviewsCount: 178,
+    featured: true,
+    badge: "Quantum Mini LED",
+    image: "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&w=800&q=80",
+    description: "Quantum Matrix Technology with Mini LEDs, NQ4 AI Gen2 Processor, Anti-Glare screen, and Dolby Atmos 60W 4.2.2Ch audio.",
+    specs: {
+      "Screen Size": "55 Inches (138 cm)",
+      "Resolution": "4K Neo QLED (144Hz VRR Support)",
+      "Sound": "Dolby Atmos, OTS+ (60W 4.2.2 Ch)",
+      "Smart TV OS": "Samsung Tizen OS with Knox Security",
+      "Gaming": "FreeSync Premium Pro, Game Bar 3.0",
+      "Warranty": "3 Years Panel + 1 Year Unit Warranty"
+    }
+  },
+  {
+    name: "LG 50-inch 4K UHD Smart AI webOS TV (UR7500)",
+    brand: "LG",
+    category: "Televisions",
+    price: 41990,
+    originalPrice: 52990,
+    quantity: 22,
+    rating: 4.6,
+    reviewsCount: 240,
+    featured: false,
+    badge: "Best Seller",
+    image: "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=800&q=80",
+    description: "Alpha 5 Gen6 AI Processor 4K, HDR10 Pro, Game Optimizer, AI Sound 20W, and Magic Remote compatibility.",
+    specs: {
+      "Screen Size": "50 Inches (126 cm)",
+      "Resolution": "4K Ultra HD (3840 x 2160), 60Hz",
+      "Sound": "20 Watts 2.0 Ch AI Sound Pro",
+      "Smart TV OS": "LG webOS 23 with Apple AirPlay & HomeKit",
+      "Connectivity": "3 HDMI, 2 USB, Bluetooth 5.0, Wi-Fi 5",
+      "Warranty": "1 Year Comprehensive LG Warranty"
+    }
+  },
+
+  // --- LAPTOPS ---
+  {
+    name: "Apple MacBook Pro 16-inch M3 Max",
+    brand: "Apple",
+    category: "Laptops",
+    price: 319900,
+    originalPrice: 349900,
+    quantity: 7,
+    rating: 5.0,
+    reviewsCount: 88,
+    featured: true,
+    badge: "Pro Creator",
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+    description: "Space Black finish, Liquid Retina XDR display with 1600 nits peak brightness, 14-core CPU, 30-core GPU, and up to 22 hours battery.",
+    specs: {
+      "Processor": "Apple M3 Max chip (14-core CPU, 30-core GPU)",
+      "Memory & Storage": "36GB Unified Memory | 1TB Superfast SSD",
+      "Display": "16.2-inch Liquid Retina XDR (3456 x 2234), ProMotion 120Hz",
+      "Battery": "100Wh with 140W USB-C Power Adapter",
+      "Ports": "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3, Headphone jack",
+      "Warranty": "1 Year Apple International Warranty"
+    }
+  },
+  {
+    name: "Dell XPS 14 OLED Intel Core Ultra 7",
+    brand: "Dell",
+    category: "Laptops",
+    price: 184990,
+    originalPrice: 199990,
+    quantity: 11,
+    rating: 4.7,
+    reviewsCount: 65,
+    featured: true,
+    badge: "Ultra Thin",
+    image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
+    description: "Crafted with machined aluminum and Gorilla Glass 3. Powered by Intel Core Ultra 7 with dedicated NPU for AI acceleration.",
+    specs: {
+      "Processor": "Intel Core Ultra 7 155H (16 Cores, 22 Threads, up to 4.8 GHz)",
+      "Memory & Storage": "32GB LPDDR5X 7467MHz | 1TB PCIe NVMe SSD",
+      "Graphics": "NVIDIA GeForce RTX 4050 6GB GDDR6",
+      "Display": "14.5-inch 3.2K (3200 x 2000) OLED 120Hz Touchscreen",
+      "Weight": "1.68 kg with 69.5Wh battery and 100W GaN adapter",
+      "Warranty": "2 Years Dell Onsite Hardware Support"
+    }
+  },
+  {
+    name: "ASUS ROG Zephyrus G16 Gaming Laptop",
+    brand: "ASUS",
+    category: "Laptops",
+    price: 179990,
+    originalPrice: 194990,
+    quantity: 14,
+    rating: 4.8,
+    reviewsCount: 142,
+    featured: false,
+    badge: "Gaming Beast",
+    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=800&q=80",
+    description: "Ultra-sleek gaming machine featuring ROG Nebula OLED 240Hz display, RTX 4070 GPU, and CNC aluminum chassis with Slash Lighting.",
+    specs: {
+      "Processor": "Intel Core Ultra 9 185H (2.3 GHz up to 5.1 GHz)",
+      "Graphics": "NVIDIA GeForce RTX 4070 8GB GDDR6 (105W TGP)",
+      "Memory & Storage": "32GB LPDDR5X | 1TB PCIe 4.0 SSD",
+      "Display": "16-inch 2.5K (2560 x 1600) OLED 240Hz 0.2ms",
+      "Audio": "4-speaker system with Dolby Atmos & Smart Amp",
+      "Warranty": "1 Year Global Warranty with Accidental Damage Protection"
+    }
+  },
+  {
+    name: "HP Envy x360 2-in-1 Touch Laptop",
+    brand: "HP",
+    category: "Laptops",
+    price: 89990,
+    originalPrice: 99990,
+    quantity: 19,
+    rating: 4.6,
+    reviewsCount: 94,
+    featured: false,
+    badge: "2-in-1 Convertible",
+    image: "https://images.unsplash.com/photo-1544731612-de2f9602b814?auto=format&fit=crop&w=800&q=80",
+    description: "Versatile 360-degree hinge convertible laptop with HP Rechargeable MPP2.0 Tilt Pen, Intel Core Ultra 5, and 14-inch FHD OLED touch display.",
+    specs: {
+      "Processor": "Intel Core Ultra 5 125U (12 Cores, up to 4.3 GHz)",
+      "Memory & Storage": "16GB LPDDR5 | 512GB PCIe NVMe SSD",
+      "Display": "14-inch 2K (1920 x 1200) OLED Eyesafe Touchscreen",
+      "Security": "Camera Privacy Shutter & Fingerprint Reader",
+      "Weight": "1.39 kg with up to 13 hours battery life",
+      "Warranty": "1 Year Onsite HP Warranty"
+    }
+  },
+
+  // --- REFRIGERATORS ---
+  {
+    name: "Samsung 653L 3-Door Side-by-Side Smart Refrigerator",
+    brand: "Samsung",
+    category: "Refrigerators",
+    price: 84990,
+    originalPrice: 109990,
+    quantity: 8,
+    rating: 4.8,
+    reviewsCount: 92,
+    featured: true,
+    badge: "Smart Convertible",
+    image: "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?auto=format&fit=crop&w=800&q=80",
+    description: "SpaceMax design with Convertible 5-in-1 cooling mode, AI Energy mode via SmartThings app, and Digital Inverter with 20 years warranty.",
+    specs: {
+      "Capacity": "653 Litres (Side-by-Side 3-Door)",
+      "Energy Rating": "3 Star Energy Efficiency rating",
+      "Compressor": "Digital Inverter with 20 Year Warranty",
+      "Special Features": "Convertible 5-in-1, Twin Cooling Plus, Wi-Fi SmartThings",
+      "Defrost Type": "Frost Free with Power Cool & Power Freeze",
+      "Warranty": "1 Year Comprehensive + 20 Years on Compressor"
+    }
+  },
+  {
+    name: "LG 343L 3-Star Double Door Frost Free Refrigerator",
+    brand: "LG",
+    category: "Refrigerators",
+    price: 38990,
+    originalPrice: 48990,
+    quantity: 16,
+    rating: 4.7,
+    reviewsCount: 210,
+    featured: false,
+    badge: "Popular Choice",
+    image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=800&q=80",
+    description: "Door Cooling+ with Smart Inverter Compressor, Multi Air Flow, Moist 'N' Fresh lattice box, and auto smart connect.",
+    specs: {
+      "Capacity": "343 Litres (Double Door Top Freezer)",
+      "Energy Rating": "3 Star BEE Rating",
+      "Cooling Tech": "Door Cooling+ with Surround Multi Air Flow",
+      "Shelves": "Toughened Glass Spill-proof Shelves",
+      "Compressor": "Smart Inverter Compressor",
+      "Warranty": "1 Year on Product + 10 Years on Compressor"
+    }
+  },
+  {
+    name: "Whirlpool 265L 3-Star Inverter Frost-Free Refrigerator",
+    brand: "Whirlpool",
+    category: "Refrigerators",
+    price: 27990,
+    originalPrice: 35990,
+    quantity: 21,
+    rating: 4.5,
+    reviewsCount: 165,
+    featured: false,
+    badge: "Value Pick",
+    image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=800&q=80",
+    description: "Intellisense Inverter Technology with 6th Sense DeepFreeze, Microblock prevention up to 99% bacterial growth, and 12 days garden freshness.",
+    specs: {
+      "Capacity": "265 Litres Double Door",
+      "Energy Rating": "3 Star",
+      "Technology": "6th Sense DeepFreeze & Microblock Tech",
+      "Stabilizer Free": "Works reliably on 130V to 300V",
+      "Warranty": "1 Year Unit + 10 Years Compressor"
+    }
+  },
+
+  // --- WASHING MACHINES ---
+  {
+    name: "LG 9 Kg 5-Star AI Direct Drive Front Load Washing Machine",
+    brand: "LG",
+    category: "Washing Machines",
+    price: 43990,
+    originalPrice: 54990,
+    quantity: 10,
+    rating: 4.9,
+    reviewsCount: 180,
+    featured: true,
+    badge: "AI DirectDrive",
+    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=800&q=80",
+    description: "AI DD technology intelligently detects fabric softness and wash weight to choose optimal drum motion, featuring Steam+ Allergy Care and TurboWash 59 min.",
+    specs: {
+      "Capacity": "9.0 Kg (Ideal for large families)",
+      "Energy Rating": "5 Star BEE Rating",
+      "Motor": "Inverter Direct Drive Motor with 6 Motion DD",
+      "Features": "Steam Wash, TurboWash, Wi-Fi ThinQ, Tub Clean",
+      "Max Spin Speed": "1400 RPM for faster drying",
+      "Warranty": "2 Years Product + 10 Years Motor"
+    }
+  },
+  {
+    name: "Samsung 8 Kg 5-Star EcoBubble Front Load Washer",
+    brand: "Samsung",
+    category: "Washing Machines",
+    price: 36990,
+    originalPrice: 44990,
+    quantity: 14,
+    rating: 4.7,
+    reviewsCount: 145,
+    featured: false,
+    badge: "EcoBubble",
+    image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=800&q=80",
+    description: "EcoBubble turns detergent into micro-bubbles that penetrate fabric 40x faster. Features Hygiene Steam cycle removing 99.9% bacteria.",
+    specs: {
+      "Capacity": "8.0 Kg Front Load",
+      "Energy Rating": "5 Star",
+      "Spin Speed": "1400 RPM",
+      "Special Programs": "Hygiene Steam, 15m Quick Wash, Super Eco Wash",
+      "Drum": "Diamond Drum Stainless Steel",
+      "Warranty": "2 Years Comprehensive + 20 Years Motor"
+    }
+  },
+  {
+    name: "Whirlpool 7.5 Kg 5-Star Fully-Automatic Top Load",
+    brand: "Whirlpool",
+    category: "Washing Machines",
+    price: 17490,
+    originalPrice: 22490,
+    quantity: 25,
+    rating: 4.5,
+    reviewsCount: 310,
+    featured: false,
+    badge: "Top Seller",
+    image: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=800&q=80",
+    description: "6th Sense Smart Sensors, Spiro Wash Action with 360 degree wash motion, zero pressure fill technology, and 12 wash programs.",
+    specs: {
+      "Capacity": "7.5 Kg Top Load",
+      "Energy Rating": "5 Star Rating",
+      "Wash Programs": "12 Programs (Delicate, Heavy, Normal, Eco)",
+      "Drum": "Spa Wash Drum with Soft Close Lid",
+      "Warranty": "2 Years Product + 10 Years Motor"
+    }
+  },
+
+  // --- AIR CONDITIONERS ---
+  {
+    name: "Daikin 1.5 Ton 5-Star Inverter Split AC (Copper, PM 2.5)",
+    brand: "Daikin",
+    category: "Air Conditioners",
+    price: 45990,
+    originalPrice: 58990,
+    quantity: 12,
+    rating: 4.9,
+    reviewsCount: 224,
+    featured: true,
+    badge: "5 Star Energy",
+    image: "https://images.unsplash.com/photo-1614633837722-e42ee13a2bb8?auto=format&fit=crop&w=800&q=80",
+    description: "Patented Swing Compressor with Dew Clean Technology, PM 2.5 clean air filter, Coanda airflow for uniform cooling, and 3D airflow.",
+    specs: {
+      "Tonnage": "1.5 Ton (Ideal for 150 - 190 sq ft rooms)",
+      "Energy Rating": "5 Star BEE Rating (ISEER: 5.2)",
+      "Condenser Coil": "100% Copper with Anti-Corrosion Treatment",
+      "Special Features": "Triple Display, Coanda Airflow, Dew Clean Auto Wash",
+      "Refrigerant": "Eco-friendly R32 gas",
+      "Warranty": "1 Year Unit, 5 Years PCB, 10 Years Compressor"
+    }
+  },
+  {
+    name: "LG 1.5 Ton 5-Star AI DUAL Inverter Split AC",
+    brand: "LG",
+    category: "Air Conditioners",
+    price: 46990,
+    originalPrice: 61990,
+    quantity: 17,
+    rating: 4.8,
+    reviewsCount: 195,
+    featured: true,
+    badge: "AI Dual Inverter",
+    image: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&w=800&q=80",
+    description: "AI DUAL Inverter with 6-in-1 convertible cooling, HD filter with anti-virus protection, Ocean Black Fin rust proofing, and Wi-Fi voice control.",
+    specs: {
+      "Tonnage": "1.5 Ton (AI Convertible 6-in-1)",
+      "Energy Rating": "5 Star (ISEER: 5.2)",
+      "Cooling Capacity": "5000 Watts (scalable up to 110%)",
+      "Coil": "100% Copper with Ocean Black Protection",
+      "Smart Control": "LG ThinQ app with Alexa and Google Assistant",
+      "Warranty": "1 Year Comprehensive, 5 Years PCB, 10 Years Compressor"
+    }
+  },
+  {
+    name: "Samsung 1 Ton 3-Star WindFree Inverter Split AC",
+    brand: "Samsung",
+    category: "Air Conditioners",
+    price: 33990,
+    originalPrice: 42990,
+    quantity: 15,
+    rating: 4.6,
+    reviewsCount: 110,
+    featured: false,
+    badge: "WindFree Tech",
+    image: "https://images.unsplash.com/photo-1614633837722-e42ee13a2bb8?auto=format&fit=crop&w=800&q=80",
+    description: "WindFree cooling gently disperses air through 23,000 micro air holes without unpleasant cold draft. Fast cooling with Digital Inverter Boost.",
+    specs: {
+      "Tonnage": "1.0 Ton (Up to 120 sq ft room)",
+      "Energy Rating": "3 Star Inverter",
+      "Cooling Tech": "WindFree Cooling with 5-Step Mode",
+      "Filter": "Tri-Care Filter for dust, virus, allergen capture",
+      "Warranty": "1 Year Unit + 10 Years Inverter Compressor"
+    }
+  },
+
+  // --- ACCESSORIES ---
+  {
+    name: "Apple AirPods Pro (2nd Gen with USB-C)",
+    brand: "Apple",
+    category: "Accessories",
+    price: 24900,
+    originalPrice: 26900,
+    quantity: 45,
+    rating: 4.9,
+    reviewsCount: 420,
+    featured: true,
+    badge: "Active ANC",
+    image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=800&q=80",
+    description: "Up to 2x more Active Noise Cancellation, Adaptive Audio, Personalized Spatial Audio with dynamic head tracking, and MagSafe USB-C case with speaker.",
+    specs: {
+      "Audio Tech": "H2 Apple chip, Adaptive Audio, Transparency mode",
+      "Battery Life": "Up to 6 hours listening with ANC (30 hours total with Case)",
+      "Connectivity": "Bluetooth 5.3 with ultra-low latency",
+      "Water Resistance": "IP54 dust, sweat, and water resistant",
+      "Warranty": "1 Year Official Apple Warranty"
+    }
+  },
+  {
+    name: "Sony WH-1000XM5 Wireless Noise Cancelling Headphones",
+    brand: "Sony",
+    category: "Accessories",
+    price: 28990,
+    originalPrice: 34990,
+    quantity: 26,
+    rating: 4.9,
+    reviewsCount: 312,
+    featured: true,
+    badge: "Audiophile Pick",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+    description: "Industry-leading noise canceling with two processors and 8 microphones. Specially designed 30mm carbon fiber driver with LDAC High-Res Audio.",
+    specs: {
+      "Driver": "30mm Precision Engineered Driver Unit",
+      "Battery Life": "Up to 30 hours with Quick Charge (3 min charge = 3 hrs)",
+      "Noise Cancelling": "Integrated Processor V1 + HD NC Processor QN1",
+      "Features": "Speak-to-Chat, Multipoint Connection, Wear Detection",
+      "Warranty": "1 Year Official Sony Warranty"
+    }
+  },
+  {
+    name: "boAt Stone 1200 14W Portable Bluetooth Speaker",
+    brand: "boAt",
+    category: "Accessories",
+    price: 3499,
+    originalPrice: 6990,
+    quantity: 60,
+    rating: 4.6,
+    reviewsCount: 520,
+    featured: false,
+    badge: "Mega Bass",
+    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80",
+    description: "14W RMS stereo sound with RGB LEDs, 360-degree party audio, IPX7 water proofing, and up to 9 hours of non-stop playback.",
+    specs: {
+      "Output": "14 Watts RMS Stereo Bass",
+      "Battery": "Up to 9 hours (3600 mAh battery)",
+      "Waterproofing": "IPX7 Splash & Water Resistant",
+      "Connectivity": "Bluetooth v5.0, AUX, USB, FM Radio",
+      "Warranty": "1 Year Replacement Warranty"
+    }
+  },
+  {
+    name: "Samsung 65W Trio Power Adapter (Fast Charging)",
+    brand: "Samsung",
+    category: "Accessories",
+    price: 3299,
+    originalPrice: 4999,
+    quantity: 75,
+    rating: 4.7,
+    reviewsCount: 230,
+    featured: false,
+    badge: "Fast Charger",
+    image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+    description: "Charge three devices simultaneously with two USB-C ports (65W Max, 25W Max) and one USB-A port (15W Max). Supports Super Fast Charging 2.0.",
+    specs: {
+      "Max Power Output": "65 Watts (Port 1 USB-C PD 3.0 PPS)",
+      "Ports": "2x USB Type-C + 1x USB Type-A",
+      "Compatibility": "Laptops, Tablets, Smartphones, Smartwatches",
+      "Safety": "Over-current, Short-circuit, and Over-temperature protection",
+      "Warranty": "6 Months Samsung Warranty"
+    }
+  }
+];
+
+module.exports = sampleProducts;
+
